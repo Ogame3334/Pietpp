@@ -1,18 +1,31 @@
 ﻿// main.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
 //
 
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include "src/pp.h"
+#include "src/executer.h"
+
 #ifdef _DEBUG
 #pragma comment(lib, "opencv_world470d.lib")
 #else
 #pragma comment(lib, "opencv_world470.lib")
 #endif
 
-#include <iostream>
-#include <opencv2/opencv.hpp>
-
-int main()
+int main(int argc, char** argv)
 {
-    std::cout << "Hello World!\n";
+    if (argc != 2) {
+        std::cout << "引数の個数が正しくありません";
+    }
+
+    Pietpp::Executer executer{ argv[1] };
+
+    for (int i = 0; i < 20; i++) {
+        executer.next();
+        //cv::waitKey(0);
+    }
+
+    return 0;
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
