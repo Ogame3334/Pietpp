@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp>
 #include "src/pp.h"
 #include "src/executer.h"
+#include <stack>
 
 #ifdef _DEBUG
 #pragma comment(lib, "opencv_world470d.lib")
@@ -14,16 +15,37 @@
 
 int main(int argc, char** argv)
 {
-    if (argc != 2) {
+    if (not (argc == 2 or argc == 3)) {
         std::cout << "引数の個数が正しくありません";
     }
 
-    Pietpp::Executer executer{ argv[1] };
+    Pietpp::Executer executer{ argv[1], argv[2]};
+    //executer.color_view();
 
-    for (int i = 0; i < 20; i++) {
+    //cv::Vec3b a{ 255, 255, 255 }, b{ 0, 0, 0 };
+    //cv::Vec3i a_i{ a }, b_i{ b };
+    //std::cout << b_i - a_i << std::endl;
+
+    for (int i = 0; i < 50; i++) {
         executer.next();
         //cv::waitKey(0);
     }
+
+    /*unsigned int a = 73;
+    char16_t b = u'あ';
+
+    std::cout << (char)a << std::endl;
+    std::wcout << (wchar_t)b << std::endl;
+    std::cout << (int)b << std::endl;
+
+    std::stack<int> stack;
+
+    stack.push(1);
+    stack.push(1);
+
+    std::cout << stack.top();
+    stack.pop();
+    std::cout << stack.top();*/
 
     return 0;
 }
